@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * Abstract super class for UserManager. Contains all members and methods that can be offered for all Clients.
- * 
+ *
  * @review
  */
 public abstract class ClientManager extends ObjectManager {
@@ -52,7 +52,7 @@ public abstract class ClientManager extends ObjectManager {
 	 */
 	protected void assertIsUnknownClientAsIllegalArgument(Client client) {
 		if (hasClientById(client.getId())) {
-			throw new IllegalArgumentException(client.getId() + "is already known");
+			throw new IllegalArgumentException(client.getId() + " is already known");
 		}
 	}
 
