@@ -130,6 +130,8 @@ public class Photo extends DataObject {
 	Long idLong;
 	@Parent
 	Key parent = ObjectManager.applicationRootKey;
+	
+	private Location location;
 
 	/**
 	 *
@@ -160,6 +162,14 @@ public class Photo extends DataObject {
 	 */
 	public void setImage(PhotoSize photoSize, Image image) {
 		this.images.put(photoSize, image);
+	}
+	
+	public Location getLocation() {
+		return this.location;
+	}
+	
+	public void setLocation(Location loc) {
+		this.location = loc;
 	}
 
 	/**
