@@ -12,7 +12,7 @@ public class Coordinate {
 		this.setCoordinates(x, y, z);
 	}
 
-	public double getDistance(Coordinate coord) {
+	protected double getDistance(Coordinate coord) {
 		double dX_squared = Math.pow(this.getX() - coord.getX(), 2);
 		double dY_squared = Math.pow(this.getY() - coord.getY(), 2);
 		double dZ_squared = Math.pow(this.getZ() - coord.getZ(), 2);
@@ -25,7 +25,7 @@ public class Coordinate {
 		return isEqual((Coordinate) coord);
 	}
 
-	public boolean isEqual(Coordinate coord) {
+	protected boolean isEqual(Coordinate coord) {
 		if(coord == null || !(coord instanceof Coordinate)){
 			return false;
 		}
