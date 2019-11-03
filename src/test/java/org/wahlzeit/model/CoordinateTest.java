@@ -65,4 +65,14 @@ public class CoordinateTest {
 		assertTrue(loc1.getCoordinate().hashCode() == loc4.getCoordinate().hashCode());
 		assertTrue(loc2.getCoordinate().hashCode() != loc4.getCoordinate().hashCode());
 	}
+
+	@Test
+	public void testHasSameDoubleCoordinates(){
+		Coordinate c1 = new Coordinate(0.0000000000, 0.0000000000,0.0000000000);
+		Coordinate c2 = new Coordinate(0.1000000000, 0.1000000000,0.1000000000);
+		Coordinate c3 = new Coordinate(0.0000000001, 0.0000000001,0.0000000001);
+
+		assertTrue(!c1.hasSameDoubleCoordinates(c2));
+		assertTrue(c1.hasSameDoubleCoordinates(c3));
+	}
 }

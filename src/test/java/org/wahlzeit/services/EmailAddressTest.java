@@ -21,6 +21,7 @@
 package org.wahlzeit.services;
 
 import junit.framework.TestCase;
+import javax.mail.internet.InternetAddress;
 
 /**
  * Test cases for the EmailAddress class.
@@ -63,8 +64,63 @@ public class EmailAddressTest extends TestCase {
 	 *
 	 */
 	public void testEmptyEmailAddress() {
+		EmailAddress mail = new EmailAddress("");
+		assertFalse(mail.isEmpty());
+
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
 
-}
+	/**
+	*
+	*/
+	public void testIsValid(){
+		EmailAddress mail1 = new EmailAddress("");
+		EmailAddress mail2 = new EmailAddress("myAddress@myprovider.com");
 
+		assertTrue(mail1.isValid()); //valid locally. rejected by google
+		assertTrue(mail2.isValid());
+	}
+
+	/**
+	*
+	*/
+	public void testIsEqual(){
+		String myAddress = "hello@aol.com";
+		EmailAddress mail1 = new EmailAddress(myAddress);
+		EmailAddress mail2 = new EmailAddress(myAddress);
+		EmailAddress mail3 = new EmailAddress("foo" + myAddress);
+
+		assertTrue(mail1.isEqual(mail1));
+		assertFalse(mail1.isEqual(mail2));
+		assertFalse(mail1.isEqual(mail3));
+	}
+
+	/**
+	*
+	*/
+	public void testAsString(){
+		String myAddress = "hello@aol.com";
+		EmailAddress mail1 = new EmailAddress(myAddress);
+		EmailAddress mail2 = new EmailAddress("");
+
+		assertTrue(mail1.asString() == myAddress);
+		assertTrue(mail2.asString() == "");
+	}
+
+	/**
+	*
+	*/
+	public void testAsInternetAddress(){
+		String myAddress = "hello@aol.com";
+		EmailAddress mail1 = new EmailAddress(myAddress);
+		InternetAddress internetAddress;
+
+		try{
+			internetAddress = new InternetAddress(myAddress);
+			assertTrue(internetAddress.equals(mail1.asInternetAddress()));
+		} catch (Exception e){
+			//should not happen
+		}
+	}
+
+}

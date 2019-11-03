@@ -8,6 +8,8 @@ public class Coordinate {
 	private double y;
 	private double z;
 
+	private final double PRECISION = 1E-5;
+
 	public Coordinate(double x, double y, double z) {
 		this.setCoordinates(x, y, z);
 	}
@@ -38,6 +40,19 @@ public class Coordinate {
 	@Override
 	public int hashCode(){
 		return Objects.hash(this.x, this.y, this.z);
+	}
+
+	public boolean hasSameDoubleCoordinates(Coordinate coord){
+		if(Double.isNaN(this.x) || Double.isNaN(this.y) || Double.isNaN(this.z)
+			|| Double.isNaN(coord.x) || Double.isNaN(coord.y) || Double.isNaN(coord.z)){
+				return false;
+			}
+
+			boolean precisionX = Math.abs(this.x - coord.x) < PRECISION;
+			boolean precisionY = Math.abs(this.y - coord.y) < PRECISION;
+			boolean precisionZ = Math.abs(this.z - coord.z) < PRECISION;
+
+			return precisionX && precisionY && precisionZ;
 	}
 
 	public double[] getCoordinates() {
