@@ -6,13 +6,15 @@ import org.junit.runners.Suite;
 import org.wahlzeit.handlers.HandlerSuite;
 import org.wahlzeit.model.ModelSuite;
 import org.wahlzeit.services.ServiceSuite;
+import org.wahlzeit.utils.UtilSuite;
+
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  org.wahlzeit.handlers.HandlerSuite.class,
-  org.wahlzeit.model.ModelSuite.class,
-  org.wahlzeit.services.ServiceSuite.class,
-  org.wahlzeit.utils.UtilSuite.class
+  HandlerSuite.class,
+  ModelSuite.class,
+  ServiceSuite.class,
+  UtilSuite.class
 })
 
 public class AllTests {
