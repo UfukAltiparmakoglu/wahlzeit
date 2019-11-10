@@ -11,5 +11,5 @@ import org.wahlzeit.utils.*;
   VersionTest.class
 })
 
-public class UtilSuite {
+public class UtilTestSuite {
 }

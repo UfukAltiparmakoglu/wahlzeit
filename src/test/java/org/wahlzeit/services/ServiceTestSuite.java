@@ -8,9 +8,9 @@ import org.wahlzeit.services.mailing.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  EmailServiceSuite.class,
+  EmailServiceTestSuite.class,
   LogBuilderTest.class
 })
 
-public class ServiceSuite {
+public class ServiceTestSuite {
 }

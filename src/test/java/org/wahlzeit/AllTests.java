@@ -3,18 +3,18 @@ package org.wahlzeit;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import org.wahlzeit.handlers.HandlerSuite;
-import org.wahlzeit.model.ModelSuite;
-import org.wahlzeit.services.ServiceSuite;
-import org.wahlzeit.utils.UtilSuite;
+import org.wahlzeit.handlers.HandlerTestSuite;
+import org.wahlzeit.model.ModelTestSuite;
+import org.wahlzeit.services.ServiceTestSuite;
+import org.wahlzeit.utils.UtilTestSuite;
 
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  HandlerSuite.class,
-  ModelSuite.class,
-  ServiceSuite.class,
-  UtilSuite.class
+  HandlerTestSuite.class,
+  ModelTestSuite.class,
+  ServiceTestSuite.class,
+  UtilTestSuite.class
 })
 
 public class AllTests {

@@ -19,8 +19,11 @@ import org.wahlzeit.model.persistence.*;
   PhotoFilterTest.class,
   TagsTest.class,
   UserStatusTest.class,
-  ValueTest.class
+  ValueTest.class,
+  MotorcyclePhotoTest.class,
+  MotorcyclePhotoFactoryTest.class,
+  MotorcyclePhotoManagerTest.class
 })
 
-public class ModelSuite {
+public class ModelTestSuite {
 }

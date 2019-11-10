@@ -22,22 +22,18 @@ package org.wahlzeit.services;
 
 import junit.framework.TestCase;
 import javax.mail.internet.InternetAddress;
+import org.junit.Test;
 
 /**
  * Test cases for the EmailAddress class.
  */
 public class EmailAddressTest extends TestCase {
 
-	/**
-	 *
-	 */
 	public EmailAddressTest(String name) {
 		super(name);
 	}
 
-	/**
-	 *
-	 */
+	@Test
 	public void testGetEmailAddressFromString() {
 		// invalid email addresses are allowed for local testing and online avoided by Google
 
@@ -47,9 +43,7 @@ public class EmailAddressTest extends TestCase {
 		assertTrue(createEmailAddressIgnoreException("bingo+bongo@bango"));
 	}
 
-	/**
-	 *
-	 */
+	@Test
 	protected boolean createEmailAddressIgnoreException(String ea) {
 		try {
 			EmailAddress.getFromString(ea);
@@ -60,9 +54,7 @@ public class EmailAddressTest extends TestCase {
 		}
 	}
 
-	/**
-	 *
-	 */
+	@Test
 	public void testEmptyEmailAddress() {
 		EmailAddress mail = new EmailAddress("");
 		assertFalse(mail.isEmpty());
@@ -70,9 +62,7 @@ public class EmailAddressTest extends TestCase {
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
 
-	/**
-	*
-	*/
+	@Test
 	public void testIsValid(){
 		EmailAddress mail1 = new EmailAddress("");
 		EmailAddress mail2 = new EmailAddress("myAddress@myprovider.com");
@@ -81,9 +71,7 @@ public class EmailAddressTest extends TestCase {
 		assertTrue(mail2.isValid());
 	}
 
-	/**
-	*
-	*/
+	@Test
 	public void testIsEqual(){
 		String myAddress = "hello@aol.com";
 		EmailAddress mail1 = new EmailAddress(myAddress);
@@ -95,9 +83,7 @@ public class EmailAddressTest extends TestCase {
 		assertFalse(mail1.isEqual(mail3));
 	}
 
-	/**
-	*
-	*/
+	@Test
 	public void testAsString(){
 		String myAddress = "hello@aol.com";
 		EmailAddress mail1 = new EmailAddress(myAddress);
@@ -107,9 +93,7 @@ public class EmailAddressTest extends TestCase {
 		assertTrue(mail2.asString() == "");
 	}
 
-	/**
-	*
-	*/
+	@Test
 	public void testAsInternetAddress(){
 		String myAddress = "hello@aol.com";
 		EmailAddress mail1 = new EmailAddress(myAddress);

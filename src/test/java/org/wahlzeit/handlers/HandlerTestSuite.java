@@ -10,5 +10,5 @@ import org.wahlzeit.handlers.*;
   TellFriendTest.class
 })
 
-public class HandlerSuite {
+public class HandlerTestSuite {
 }
