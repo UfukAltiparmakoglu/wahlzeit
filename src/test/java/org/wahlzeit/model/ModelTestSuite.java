@@ -12,7 +12,8 @@ import org.wahlzeit.model.persistence.*;
   //AbstractAdapterTest.class, //this throws exceptions
   DatastoreAdapterTest.class,
   AccessRightsTest.class,
-  CoordinateTest.class,
+  CartesianCoordinateTest.class,
+  SphericCoordinateTest.class,
   FlagReasonTest.class,
   GenderTest.class,
   GuestTest.class,
