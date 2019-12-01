@@ -122,4 +122,11 @@ public class CartesianCoordinateTest {
 		assertTrue(angle == 45.0);
 	}
 	
+	@Test(expected = NullPointerException.class)
+	public void testAssertCoordinateIsNotNull() {
+		
+		CartesianCoordinate cc = new CartesianCoordinate(1.0, 1.0, 1.0);
+		cc.getDistance(null);
+	}
+	
 }

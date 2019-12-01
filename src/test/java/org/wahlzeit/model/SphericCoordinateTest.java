@@ -1,6 +1,7 @@
 package org.wahlzeit.model;
 
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 /**
@@ -107,5 +108,18 @@ public class SphericCoordinateTest {
 		SphericCoordinate sc2 = new SphericCoordinate(Math.PI/2, Math.PI/2, 1.0);
 
 		assertTrue((int) sc1.getCentralAngle(sc2) == 90);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAssertCoordinateIsNotNull() {
+		
+		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, 1.0);
+		sc.getDistance(null);
+	}	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAssertIsValidRadius() {
+		
+		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, -1.0);
 	}
 }
