@@ -33,7 +33,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 		
 		assertIsValidDouble(x);
 		assertIsValidDouble(y);
-		assertIsValidDouble(z);		
+		assertIsValidDouble(z);
 		
 		CartesianCoordinate cc = new CartesianCoordinate(x,y,z);
 		

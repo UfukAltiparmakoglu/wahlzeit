@@ -70,7 +70,13 @@ public abstract class ModelMain extends AbstractMain {
 		MotorcyclePhotoFactory.initialize();
 
 		log.config(LogBuilder.createSystemMessage().addAction("load Photos").toString());
-		MotorcyclePhotoManager.getInstance().init();
+		
+		try {
+			MotorcyclePhotoManager.getInstance().init();
+		} catch (NullPointerException npe) {
+			log.info("MotorcycleManager threw an exception! See stacktrace.");
+			npe.printStackTrace();
+		}
 	}
 
 

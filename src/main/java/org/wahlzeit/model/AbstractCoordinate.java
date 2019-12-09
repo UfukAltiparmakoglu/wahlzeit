@@ -118,7 +118,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 		}
 	}
 	
-	public void assertIsValidDouble(Double val) {
+	public void assertIsValidDouble(double val) {
 		if(!Double.isFinite(val)) {
 			throw new IllegalArgumentException("Provided value is not valid Double!");
 		}

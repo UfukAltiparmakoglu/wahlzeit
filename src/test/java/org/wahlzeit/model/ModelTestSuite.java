@@ -23,7 +23,8 @@ import org.wahlzeit.model.persistence.*;
   ValueTest.class,
   MotorcyclePhotoTest.class,
   MotorcyclePhotoFactoryTest.class,
-  MotorcyclePhotoManagerTest.class
+  MotorcyclePhotoManagerTest.class,
+  LocationTest.class
 })
 
 public class ModelTestSuite {

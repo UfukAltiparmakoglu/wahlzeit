@@ -20,10 +20,6 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.services.LogBuilder;
-
-import java.util.logging.Logger;
-
 /**
  * MotorcyclePhotoFactory that extends PhotoFactory
  */
@@ -31,7 +27,8 @@ public class MotorcyclePhotoFactory extends PhotoFactory {
 
 	private static MotorcyclePhotoFactory instance = new MotorcyclePhotoFactory();
 	
-	public static MotorcyclePhotoFactory getInstance() {
+	public static MotorcyclePhotoFactory getInstance() throws NullPointerException{
+		assertInstanceNotNull();
 		return instance;
 	}
 
@@ -47,5 +44,11 @@ public class MotorcyclePhotoFactory extends PhotoFactory {
 
 	public MotorcyclePhoto createPhoto(PhotoId id, String name, int horsePower){
 		return new MotorcyclePhoto(id, name, horsePower);
+	}
+	
+	private static void assertInstanceNotNull() {
+		if(instance == null) {
+			throw new NullPointerException("Requested motorcycle instance is null!");
+		}		
 	}
 }
