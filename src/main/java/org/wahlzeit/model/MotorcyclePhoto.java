@@ -71,7 +71,7 @@ public class MotorcyclePhoto extends Photo {
 	}
 
 	private void assertIsValidName(String name) {
-		if(name == null || name.strip().isEmpty()) {
+		if(name == null || name.isEmpty() || name.matches(".*\\s+.*")) {
 			throw new IllegalArgumentException("Provided name can not be empty!");
 		}		
 	}
