@@ -11,9 +11,9 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testGetDistance() {
-		CartesianCoordinate c1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate c2 = new CartesianCoordinate(3, 4, 5);
-		CartesianCoordinate c3 = new CartesianCoordinate(-33, 44, 5600);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(3, 4, 5);
+		CartesianCoordinate c3 = CartesianCoordinate.getCartesianCoordinate(-33, 44, 5600);
 		Location loc1 = new Location(c1);
 		Location loc2 = new Location(c2);
 		Location loc3 = new Location(c3);
@@ -33,8 +33,8 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testIsEqual() {
-		CartesianCoordinate c1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate c2 = new CartesianCoordinate(3, 4, 5);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(3, 4, 5);
 		Location loc1 = new Location(c1);
 		Location loc2 = new Location(c2);
 		Location loc3 = new Location(c1);
@@ -46,8 +46,8 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testEquals() {
-		CartesianCoordinate c1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate c2 = new CartesianCoordinate(3, 4, 5);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(3, 4, 5);
 		Location loc1 = new Location(c1);
 		Location loc2 = new Location(c2);
 		Location loc3 = new Location(c1);
@@ -59,8 +59,8 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testHashCode() {
-		CartesianCoordinate c1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate c2 = new CartesianCoordinate(3, 4, 5);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(3, 4, 5);
 		Location loc1 = new Location(c1);
 		Location loc2 = new Location(c2);
 		Location loc3 = new Location(c1);
@@ -74,9 +74,9 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testHasSameDoubleCoordinates(){
-		CartesianCoordinate c1 = new CartesianCoordinate(0.0000000000, 0.0000000000,0.0000000000);
-		CartesianCoordinate c2 = new CartesianCoordinate(0.1000000000, 0.1000000000,0.1000000000);
-		CartesianCoordinate c3 = new CartesianCoordinate(0.0000000001, 0.0000000001,0.0000000001);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0.0000000000, 0.0000000000,0.0000000000);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(0.1000000000, 0.1000000000,0.1000000000);
+		CartesianCoordinate c3 = CartesianCoordinate.getCartesianCoordinate(0.0000000001, 0.0000000001,0.0000000001);
 
 		assertTrue(!c1.hasSameDoubleCoordinates(c2));
 		assertTrue(c1.hasSameDoubleCoordinates(c3));
@@ -84,16 +84,16 @@ public class CartesianCoordinateTest {
 	
 	@Test
 	public void testAsCartesianCoordinate(){
-		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, 1.0);
+		SphericCoordinate sc = SphericCoordinate.getSphericCoordinate(1.0, 1.0, 1.0);
 
 		assertTrue(sc.asCartesianCoordinate() instanceof CartesianCoordinate);
 	}
 	
 	@Test
 	public void testGetCartesianDistance(){
-		CartesianCoordinate c1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate c2 = new CartesianCoordinate(3, 4, 5);
-		CartesianCoordinate c3 = new CartesianCoordinate(-33, 44, 5600);
+		CartesianCoordinate c1 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+		CartesianCoordinate c2 = CartesianCoordinate.getCartesianCoordinate(3, 4, 5);
+		CartesianCoordinate c3 = CartesianCoordinate.getCartesianCoordinate(-33, 44, 5600);
 		Location loc1 = new Location(c1);
 		Location loc2 = new Location(c2);
 		Location loc3 = new Location(c3);
@@ -107,25 +107,36 @@ public class CartesianCoordinateTest {
 	
 	@Test
 	public void testAsSphericCoordinate(){
-		CartesianCoordinate cc = new CartesianCoordinate(1.0, 1.0, 1.0);
+		CartesianCoordinate cc = CartesianCoordinate.getCartesianCoordinate(1.0, 1.0, 1.0);
 
 		assertTrue(cc.asSphericCoordinate() instanceof SphericCoordinate);
 	}
 	
 	@Test
 	public void testGetCentralAngle(){
-		CartesianCoordinate cc1 = new CartesianCoordinate(0.0, 1.0, 0.0);
-		CartesianCoordinate cc2 = new CartesianCoordinate(1.0, 0.0, 0.0);
+		CartesianCoordinate cc1 = CartesianCoordinate.getCartesianCoordinate(0.0, 1.0, 0.0);
+		CartesianCoordinate cc2 = CartesianCoordinate.getCartesianCoordinate(1.0, 0.0, 0.0);
 
 		double angle = Math.round(cc1.getCentralAngle(cc2));
 		
 		assertTrue(angle == 45.0);
 	}
 	
+	@Test
+	public void testGetCartesianCoordinate(){		
+		CartesianCoordinate cc1 = CartesianCoordinate.getCartesianCoordinate(0.0, 0.0, 0.0);
+		CartesianCoordinate cc2 = CartesianCoordinate.getCartesianCoordinate(0.0, 0.0, 0.0);
+		CartesianCoordinate cc3 = CartesianCoordinate.getCartesianCoordinate(1.0, 0.0, 0.0);		
+		
+		assertTrue(cc1.isEqual(cc2));
+		assertTrue(!cc1.isEqual(cc3));
+		assertTrue(!cc2.isEqual(cc3));	
+	}
+	
 	@Test(expected = NullPointerException.class)
 	public void testAssertCoordinateIsNotNull() {
 		
-		CartesianCoordinate cc = new CartesianCoordinate(1.0, 1.0, 1.0);
+		CartesianCoordinate cc = CartesianCoordinate.getCartesianCoordinate(1.0, 1.0, 1.0);
 		cc.getDistance(null);
 	}
 	

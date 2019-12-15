@@ -11,7 +11,7 @@ public class LocationTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testAssertIsValidCoordinate() {
-		Coordinate c = new CartesianCoordinate(1.0, 1.0, 1.0);
+		Coordinate c = CartesianCoordinate.getCartesianCoordinate(1.0, 1.0, 1.0);
 		Location loc = new Location(c);
 		
 		loc.setCoordinate(null);

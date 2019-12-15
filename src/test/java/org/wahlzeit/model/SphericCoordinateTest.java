@@ -11,9 +11,9 @@ public class SphericCoordinateTest {
 
 	@Test
 	public void testGetDistance() {
-		SphericCoordinate s1 = new SphericCoordinate(0, 0, 0);
-		SphericCoordinate s2 = new SphericCoordinate(0, 0, 1);
-		SphericCoordinate s3 = new SphericCoordinate(0, 0, 2);		
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(0, 0, 0);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(0, 0, 1);
+		SphericCoordinate s3 = SphericCoordinate.getSphericCoordinate(0, 0, 2);		
 		
 		assertTrue(s1.getDistance(s1) == 0.0);
 		assertTrue(s1.getDistance(s2) == 1.0);
@@ -22,8 +22,8 @@ public class SphericCoordinateTest {
 
 	@Test
 	public void testIsEqual() {
-		SphericCoordinate s1 = new SphericCoordinate(0, 0, 0);
-		SphericCoordinate s2 = new SphericCoordinate(3, 4, 5);
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(0, 0, 0);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(3, 4, 5);
 		Location loc1 = new Location(s1);
 		Location loc2 = new Location(s2);
 		Location loc3 = new Location(s1);
@@ -35,8 +35,8 @@ public class SphericCoordinateTest {
 
 	@Test
 	public void testEquals() {
-		SphericCoordinate s1 = new SphericCoordinate(0, 0, 0);
-		SphericCoordinate s2 = new SphericCoordinate(3, 4, 5);
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(0, 0, 0);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(3, 4, 5);
 		Location loc1 = new Location(s1);
 		Location loc2 = new Location(s2);
 		Location loc3 = new Location(s1);
@@ -48,8 +48,8 @@ public class SphericCoordinateTest {
 
 	@Test
 	public void testHashCode() {
-		SphericCoordinate s1 = new SphericCoordinate(0, 0, 0);
-		SphericCoordinate s2 = new SphericCoordinate(3, 4, 5);
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(0, 0, 0);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(3, 4, 5);
 		Location loc1 = new Location(s1);
 		Location loc2 = new Location(s2);
 		Location loc3 = new Location(s1);
@@ -63,9 +63,9 @@ public class SphericCoordinateTest {
 	
 	@Test
 	public void testHasSameDoubleCoordinates(){
-		SphericCoordinate s1 = new SphericCoordinate(0.0000000000, 0.0000000000,0.0000000000);
-		SphericCoordinate s2 = new SphericCoordinate(0.1000000000, 0.1000000000,0.1000000000);
-		SphericCoordinate c3 = new SphericCoordinate(0.0000000001, 0.0000000001,0.0000000001);
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(0.0000000000, 0.0000000000,0.0000000000);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(0.1000000000, 0.1000000000,0.1000000000);
+		SphericCoordinate c3 = SphericCoordinate.getSphericCoordinate(0.0000000001, 0.0000000001,0.0000000001);
 
 		assertTrue(!s1.hasSameDoubleCoordinates(s2));
 		assertTrue(s1.hasSameDoubleCoordinates(c3));
@@ -74,15 +74,15 @@ public class SphericCoordinateTest {
 	
 	@Test
 	public void testAsCartesianCoordinate(){
-		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, 1.0);
+		SphericCoordinate sc = SphericCoordinate.getSphericCoordinate(1.0, 1.0, 1.0);
 
 		assertTrue(sc.asCartesianCoordinate() instanceof CartesianCoordinate);
 	}
 	
 	@Test
 	public void testGetCartesianDistance(){
-		SphericCoordinate s1 = new SphericCoordinate(Math.PI/2, Math.PI/2, 1);
-		SphericCoordinate s2 = new SphericCoordinate(Math.PI, Math.PI, 1);
+		SphericCoordinate s1 = SphericCoordinate.getSphericCoordinate(Math.PI/2, Math.PI/2, 1);
+		SphericCoordinate s2 = SphericCoordinate.getSphericCoordinate(Math.PI, Math.PI, 1);
 		Location loc1 = new Location(s1);
 		Location loc2 = new Location(s2);
 		Location loc3 = new Location(s1);
@@ -97,29 +97,40 @@ public class SphericCoordinateTest {
 	
 	@Test
 	public void testAsSphericCoordinate(){
-		CartesianCoordinate cc = new CartesianCoordinate(1.0, 1.0, 1.0);
+		CartesianCoordinate cc = CartesianCoordinate.getCartesianCoordinate(1.0, 1.0, 1.0);
 
 		assertTrue(cc.asSphericCoordinate() instanceof SphericCoordinate);
 	}
 	
 	@Test
 	public void testGetCentralAngle(){
-		SphericCoordinate sc1 = new SphericCoordinate(0.0, 0.0, 1.0);
-		SphericCoordinate sc2 = new SphericCoordinate(Math.PI/2, Math.PI/2, 1.0);
+		SphericCoordinate sc1 = SphericCoordinate.getSphericCoordinate(0.0, 0.0, 1.0);
+		SphericCoordinate sc2 = SphericCoordinate.getSphericCoordinate(Math.PI/2, Math.PI/2, 1.0);
 
 		assertTrue((int) sc1.getCentralAngle(sc2) == 90);
+	}
+	
+	@Test
+	public void testGetSphericCoordinate(){		
+		SphericCoordinate sc1 = SphericCoordinate.getSphericCoordinate(Math.PI/2, Math.PI/2, 1.0);
+		SphericCoordinate sc2 = SphericCoordinate.getSphericCoordinate(Math.PI/2, Math.PI/2, 1.0);
+		SphericCoordinate sc3 = SphericCoordinate.getSphericCoordinate(Math.PI/2, Math.PI/2, 2.0);		
+		
+		assertTrue(sc1.isEqual(sc2));
+		assertTrue(!sc1.isEqual(sc3));
+		assertTrue(!sc2.isEqual(sc3));
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void testAssertCoordinateIsNotNull() {
 		
-		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, 1.0);
+		SphericCoordinate sc = SphericCoordinate.getSphericCoordinate(1.0, 1.0, 1.0);
 		sc.getDistance(null);
 	}	
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testAssertIsValidRadius() {
 		
-		SphericCoordinate sc = new SphericCoordinate(1.0, 1.0, -1.0);
+		SphericCoordinate sc = SphericCoordinate.getSphericCoordinate(1.0, 1.0, -1.0);
 	}
 }

@@ -1,15 +1,37 @@
 package org.wahlzeit.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class CartesianCoordinate extends AbstractCoordinate {
+	
+	private static HashMap<Integer, CartesianCoordinate> instances = new HashMap<Integer, CartesianCoordinate>();
 
-	private double x;
-	private double y;
-	private double z;
+	private final double x;
+	private final double y;
+	private final double z;
+	
+	public static CartesianCoordinate getCartesianCoordinate(double x, double y, double z) {
+		CartesianCoordinate tmp = new CartesianCoordinate(x, y, z);
+		int hashCode = tmp.hashCode();
+		
+		if(instances.containsKey(hashCode)) {
+			return instances.get(hashCode);
+		} else {			
+			instances.put(hashCode, tmp);
+			return tmp;
+		}
+	}
 
-	public CartesianCoordinate(double x, double y, double z) {
-		this.setCartesianCoordinates(x, y, z);
+	private CartesianCoordinate(double x, double y, double z) {
+		
+		assertClassInvariants();
+		
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		
+		assertClassInvariants();
 	}
 	
 	@Override
@@ -27,7 +49,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		assertIsValidDouble(theta);
 		assertIsValidDouble(radius);
 		
-		SphericCoordinate sc = new SphericCoordinate(phi, theta, radius);
+		SphericCoordinate sc = SphericCoordinate.getSphericCoordinate(phi, theta, radius);
 		
 		assertCoordinateIsNotNull(sc);
 		
@@ -37,32 +59,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	@Override
 	public int hashCode(){
 		return Objects.hash(this.x, this.y, this.z);
-	}	
-
-	public double[] getCartesianCoordinates() {
-		assertClassInvariants();
-		
-		return new double[]{x,y,z};
 	}
-
-	public void setCartesianCoordinates(double x, double y, double z) {
-		assertClassInvariants();
-		
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		
-		assertClassInvariants();
-	}
-
+	
 	public double getX() {
 		assertClassInvariants();
 		return x;
-	}
-
-	public void setX(double x) {
-		assertIsValidDouble(x);
-		this.x = x;
 	}
 
 	public double getY() {
@@ -70,24 +71,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		return y;
 	}
 
-	public void setY(double y) {
-		assertIsValidDouble(y);
-		this.y = y;
-	}
-
 	public double getZ() {
 		assertClassInvariants();
 		return z;
 	}
-
-	public void setZ(double z) {
-		assertIsValidDouble(z);
-		this.z = z;
+	
+	protected boolean hasValidDoubles() {
+		return !Double.isNaN(this.x) && !Double.isNaN(this.y) && !Double.isNaN(this.z);
 	}
+	
+	protected void assertHasValidDoubles() {
+		if(!hasValidDoubles()) {
+			throw new NumberFormatException("Cartesian coordinate does not have valid doubles!");
+		}
+	}	
 
 	@Override
 	protected void assertClassInvariants() {
 		assertCoordinateIsNotNull(this);
+		assertHasValidDoubles();
 		
 		assertIsValidDouble(x);
 		assertIsValidDouble(y);

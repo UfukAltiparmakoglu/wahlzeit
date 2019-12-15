@@ -76,18 +76,17 @@ public abstract class AbstractCoordinate implements Coordinate {
 		assertCoordinateIsNotNull(coord);
 		
 		CartesianCoordinate this_ = this.asCartesianCoordinate();
-		CartesianCoordinate coord_ = coord.asCartesianCoordinate();		
+		CartesianCoordinate coord_ = coord.asCartesianCoordinate();
 		
-		if(Double.isNaN(this_.getX()) || Double.isNaN(this_.getY()) || Double.isNaN(this_.getZ())
-			|| Double.isNaN(coord_.getX()) || Double.isNaN(coord_.getY()) || Double.isNaN(coord_.getZ())){
-				return false;
-			}
-
-			boolean precisionX = Math.abs(this_.getX() - coord_.getX()) < PRECISION;
-			boolean precisionY = Math.abs(this_.getY() - coord_.getY()) < PRECISION;
-			boolean precisionZ = Math.abs(this_.getZ() - coord_.getZ()) < PRECISION;
-			
-			return precisionX && precisionY && precisionZ;
+		if(!this_.hasValidDoubles() || !coord_.hasValidDoubles()){
+			return false;
+		}
+	
+		boolean precisionX = Math.abs(this_.getX() - coord_.getX()) < PRECISION;
+		boolean precisionY = Math.abs(this_.getY() - coord_.getY()) < PRECISION;
+		boolean precisionZ = Math.abs(this_.getZ() - coord_.getZ()) < PRECISION;
+		
+		return precisionX && precisionY && precisionZ;
 	}
 	
 	protected double getDistance(Coordinate coord) {
@@ -97,8 +96,8 @@ public abstract class AbstractCoordinate implements Coordinate {
 		assertCoordinateIsNotNull(coord);
 		
 		CartesianCoordinate this_ = this.asCartesianCoordinate();
-		CartesianCoordinate coord_ = coord.asCartesianCoordinate();	
-		
+		CartesianCoordinate coord_ = coord.asCartesianCoordinate();
+				
 		double dX_squared = Math.pow(this_.getX() - coord_.getX(), 2);
 		double dY_squared = Math.pow(this_.getY() - coord_.getY(), 2);
 		double dZ_squared = Math.pow(this_.getZ() - coord_.getZ(), 2);

@@ -1,14 +1,29 @@
 package org.wahlzeit.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SphericCoordinate extends AbstractCoordinate {
+	
+	private static HashMap<Integer, SphericCoordinate> instances = new HashMap<Integer, SphericCoordinate>();
 
-	private double phi;
-	private double theta;
-	private double radius;
+	private final double phi;
+	private final double theta;
+	private final double radius;
+	
+	public static SphericCoordinate getSphericCoordinate(double x, double y, double z) {
+		SphericCoordinate tmp = new SphericCoordinate(x, y, z);
+		int hashCode = tmp.hashCode();
+		
+		if(instances.containsKey(hashCode)) {
+			return instances.get(hashCode);
+		} else {			
+			instances.put(hashCode, tmp);
+			return tmp;
+		}
+	}
 
-	public SphericCoordinate(double phi, double theta, double radius) {
+	private SphericCoordinate(double phi, double theta, double radius) {
 		assertIsValidDouble(phi);
 		assertIsValidDouble(theta);
 		assertIsValidDouble(radius);		
@@ -35,7 +50,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 		assertIsValidDouble(y);
 		assertIsValidDouble(z);
 		
-		CartesianCoordinate cc = new CartesianCoordinate(x,y,z);
+		CartesianCoordinate cc = CartesianCoordinate.getCartesianCoordinate(x,y,z);
 		
 		assertCoordinateIsNotNull(cc);
 
@@ -52,30 +67,25 @@ public class SphericCoordinate extends AbstractCoordinate {
 		return phi;
 	}
 
-	public void setPhi(double phi) {
-		assertIsValidPhi(radius);
-		this.phi = phi;
-	}
-
 	public double getTheta() {
 		assertClassInvariants();
 		return theta;
-	}
-
-	public void setTheta(double theta) {
-		assertIsValidTheta(radius);
-		this.theta = theta;
 	}
 
 	public double getRadius() {
 		assertClassInvariants();
 		return radius;
 	}
-
-	public void setRadius(double radius) {
-		assertIsValidRadius(radius);
-		this.radius = radius;
+	
+	protected boolean hasValidDoubles() {
+		return !Double.isNaN(this.phi) && !Double.isNaN(this.theta) && !Double.isNaN(this.radius);
 	}
+	
+	protected void assertHasValidDoubles() {
+		if(!hasValidDoubles()) {
+			throw new NumberFormatException("Spheric coordinate does not have valid doubles!");
+		}
+	}	
 	
 	protected void assertIsValidPhi(double phi) {
 		assertIsValidDouble(phi);
@@ -101,6 +111,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	@Override
 	protected void assertClassInvariants() {
 		assertCoordinateIsNotNull(this);
+		assertHasValidDoubles();
 		
 		assertIsValidPhi(phi);
 		assertIsValidTheta(theta);
