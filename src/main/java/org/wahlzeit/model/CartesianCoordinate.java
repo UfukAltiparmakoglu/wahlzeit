@@ -3,6 +3,12 @@ package org.wahlzeit.model;
 import java.util.HashMap;
 import java.util.Objects;
 
+import org.wahlzeit.utils.DesignPattern;
+
+@DesignPattern(
+	patternName = "Composite",
+	participants = {"CartesianCoordinate", "AbstractCoordinate"}
+)
 public class CartesianCoordinate extends AbstractCoordinate {
 	
 	private static HashMap<Integer, CartesianCoordinate> instances = new HashMap<Integer, CartesianCoordinate>();

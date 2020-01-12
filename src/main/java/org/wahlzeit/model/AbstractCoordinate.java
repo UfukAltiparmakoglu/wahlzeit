@@ -1,5 +1,11 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.DesignPattern;
+
+@DesignPattern(
+	patternName = "Template Method",
+	participants = {"AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate"}
+)
 public abstract class AbstractCoordinate implements Coordinate {
 	
 	private final double PRECISION = 1E-5;
