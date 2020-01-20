@@ -10,37 +10,34 @@ public class MotorcyclePhotoFactoryTest {
 	@Test
 	public void testCreatePhotoEmpty(){
 		MotorcyclePhotoFactory mpf = MotorcyclePhotoFactory.getInstance();
-    MotorcyclePhoto mp = mpf.createPhoto();
-
-    assertTrue(mp.getName() == null);
-    assertTrue(mp.getHorsePower() == -1);
-    assertTrue(mp.getClass() == MotorcyclePhoto.class);
+	    MotorcyclePhoto mp = mpf.createPhoto();
+	    
+	    assertTrue(mp.getClass() == MotorcyclePhoto.class);
 	}
 
   @Test
 	public void testCreatePhotoWithId() {
 		MotorcyclePhotoFactory mpf = MotorcyclePhotoFactory.getInstance();
-    PhotoId id = new PhotoId(123456);
-    MotorcyclePhoto mp = mpf.createPhoto(id);
-
-    assertTrue(mp.getId() == id);
-    assertTrue(mp.getName() == null);
-    assertTrue(mp.getHorsePower() == -1);
-    assertTrue(mp.getClass() == MotorcyclePhoto.class);
+	    PhotoId id = new PhotoId(123);
+	    MotorcyclePhoto mp = mpf.createPhoto(id);
+	
+	    assertTrue(mp.getId() == id);
+	    
+	    assertTrue(mp.getClass() == MotorcyclePhoto.class);
 	}
 
   @Test
 	public void testCreatePhotoFull() {
 		MotorcyclePhotoFactory mpf = MotorcyclePhotoFactory.getInstance();
-    PhotoId id = new PhotoId(123456);
-    String name = "Kawasaki";
-    int hp = 198;
-    MotorcyclePhoto mp = mpf.createPhoto(id, name, hp);
-
-    assertTrue(mp.getId() == id);
-    assertTrue(mp.getName() == name);
-    assertTrue(mp.getHorsePower() == hp);
-    assertTrue(mp.getClass() == MotorcyclePhoto.class);
+	    PhotoId id = new PhotoId(1234);
+	    String name = "Kawasaki2";
+	    int hp = 198;
+	    
+	    MotorcyclePhoto mp = mpf.createPhoto(id, name, hp);
+	
+	    assertTrue(mp.getId() == id);
+	    
+	    assertTrue(mp.getClass() == MotorcyclePhoto.class);
 	}
 
 	@Test

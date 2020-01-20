@@ -24,6 +24,9 @@ import org.wahlzeit.model.persistence.*;
   MotorcyclePhotoTest.class,
   MotorcyclePhotoFactoryTest.class,
   MotorcyclePhotoManagerTest.class,
+  MotorcycleTest.class,
+  MotorcycleManagerTest.class,
+  MotorcycleTypeTest.class,
   LocationTest.class
 })
 

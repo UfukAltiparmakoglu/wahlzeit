@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model;
 
+import java.util.Date;
+
 import com.googlecode.objectify.annotation.Entity;
 
 /**
@@ -28,51 +30,59 @@ import com.googlecode.objectify.annotation.Entity;
 @Entity
 public class MotorcyclePhoto extends Photo {
 
-	private Location location;
-	private String name;
-	private int horsePower = -1;
+	private static final long serialVersionUID = 1L;
+	private Motorcycle motorcycle;
+	private Date timeTaken;
 
 	public MotorcyclePhoto() {
 		super();
+		this.motorcycle = MotorcycleManager.getInstance().createMotorcycle("default");
 	}
 
 	public MotorcyclePhoto(PhotoId myId) {
 		super(myId);
+		this.motorcycle = MotorcycleManager.getInstance().createMotorcycle("default");
 	}
-
-	public MotorcyclePhoto(PhotoId myId, String name, int horsePower) throws IllegalArgumentException{
+	
+	public MotorcyclePhoto(PhotoId myId, String name) {
 		super(myId);
-		setName(name);
-		setHorsePower(horsePower);
+		this.motorcycle = MotorcycleManager.getInstance().createMotorcycle("default", name);
 	}
 
-	public int getHorsePower(){
-		return this.horsePower;
+	public MotorcyclePhoto(PhotoId myId, String name, int horsePower) {
+		super(myId);
+		this.motorcycle = MotorcycleManager.getInstance().createMotorcycle("default", name, horsePower);
 	}
-
-	public void setHorsePower(int horsePower) throws IllegalArgumentException{
-		assertIsValidInteger(horsePower);
-		this.horsePower = horsePower;
+	
+	public Motorcycle getMotorcycle() {
+		return this.motorcycle;
 	}
-
-	public String getName(){
-		return this.name;
+	
+	public void setMotorcycle(Motorcycle motorcycle) {
+		assertIsValidMotorcycle(motorcycle);
+		this.motorcycle = motorcycle;
 	}
-
-	public void setName(String name) throws IllegalArgumentException{
-		assertIsValidName(name);
-		this.name = name;
+	
+	public Date getTimeTaken() {
+		return this.timeTaken;
 	}
-
-	private void assertIsValidInteger(int horsePower) {
-		if(horsePower <= 0 || horsePower > 1000) {
-			throw new IllegalArgumentException("Provided horsePower is not between 1 and 1000!");
-		}		
+	
+	public void setTimeTaken(Date timeTaken) {
+		assertIsValidDate(timeTaken);
+		this.timeTaken = timeTaken;
+	}	
+	
+	
+	private void assertIsValidMotorcycle(Motorcycle motorcycle){
+		if(motorcycle == null) {
+			throw new IllegalArgumentException("Provided motorcycle can not be null!");
+		}
 	}
-
-	private void assertIsValidName(String name) {
-		if(name == null || name.isEmpty() || name.matches(".*\\s+.*")) {
-			throw new IllegalArgumentException("Provided name can not be empty!");
-		}		
+	
+	private void assertIsValidDate(Date timeTaken){
+		if(timeTaken == null) {
+			throw new IllegalArgumentException("Provided date can not be null!");
+		}
 	}
+	
 }
